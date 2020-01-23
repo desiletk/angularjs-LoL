@@ -1,0 +1,52 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-2">
+			<img ng-src="http://ddragon.leagueoflegends.com/cdn/10.1.1/img/champion/{{$ctrl.champion.name | removeSpaces}}.png" class=""/>
+		</div>
+
+		<div class="col-md-2">
+			<h1>{{$ctrl.champion.name}}</h1>
+			<p>{{$ctrl.champion.blurb}}</p>
+		</div>
+		<div class="col-md-8">
+			<ul class="champion-spells list-group">
+				<li ng-repeat="spell in $ctrl.champion.spells" class="list-group-item">
+					<div class="row">
+						<div class="col-md-2">
+							<img ng-src="http://ddragon.leagueoflegends.com/cdn/10.1.1/img/spell/{{spell.image.full}}"/>
+						</div>
+						<div class="col-md-10">
+							<h4>{{spell.name}}</h4>
+							<p>{{spell.description}}</p>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+<ul class="specs">
+	<li>
+		<span>Roles</span>
+		<dd ng-repeat="role in $ctrl.champion.tags">{{role}}</dd>
+	</li>
+	<li>
+		<span>Info</span>
+		<dl>
+			<dt>Attack:</dt>
+			<dd ng-repeat="x in [].constructor($ctrl.champion.info.attack) track by $index" class="power">{{$index | square}}</dd>
+			<dt>Defense:</dt>
+			<dd ng-repeat="x in [].constructor($ctrl.champion.info.defense) track by $index" class="power">{{$index | square}}</dd>
+			<dt>Magic:</dt>
+			<dd ng-repeat="x in [].constructor($ctrl.champion.info.magic) track by $index" class="power">{{$index | square}}</dd>
+			<dt>Difficulty:</dt>
+			<dd ng-repeat="x in [].constructor($ctrl.champion.info.difficulty) track by $index" class="power">{{$index | square}}</dd>
+		</dl>
+	</li>
+	<li>
+		<span>Stats</span>
+		<dd ng-repeat="(stat, value) in $ctrl.champion.stats">{{stat | uppercase}}: {{value}}</dd>
+	</li>
+</ul>

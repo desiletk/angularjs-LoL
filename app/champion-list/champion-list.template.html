@@ -1,0 +1,28 @@
+<div class="container-fluid">
+	<div class="row">
+		<p class="col-md-2">
+			<!-- Sidebar Content -->
+			Search: 
+			<input ng-model='$ctrl.query' />
+		</p>
+		<p>
+			Sort by:
+			<select ng-model="$ctrl.orderProp">
+				<option value="name">Alphabetical</option>
+				<option value="info.difficulty">Difficulty</option>
+			</select>
+		</p>
+		<div class="col-md-10">
+			<!-- Body Content -->
+			<ul class="champions">
+				<li ng-repeat="champion in $ctrl.champions | filter:$ctrl.query | orderBy:$ctrl.orderProp" class="thumbnail champion-list-item">
+					<a href="#!/champions/{{champion.id}}" class="thumb">
+						<img ng-src="http://ddragon.leagueoflegends.com/cdn/10.1.1/img/champion/{{champion.name | removeSpaces}}.png" alt="{{champion.name}}">
+					</a>
+					<a href="#!/champions/{{champion.id}}">{{champion.name}}</a>
+					<p>Difficulty:{{champion.info.difficulty}}</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
